@@ -860,7 +860,25 @@ async def on_message(message):
     if message.author.bot:
         # Don't respond to self or bots
         return
+    #Koliw memy mod start here
+    
+    #if message is send in meme chanel
+    if(message.channel.id == cfg.CONFIG["meme-chanel-id"]):
+        meme_admin_chanel = client.get_channel(cfg.CONFIG["meme-admin-chanel-id"])
+        for mem in message.attachments:
 
+            embed = discord.Embed()
+            embed.set_image(url=mem.url)
+
+            message_from_send = await meme_admin_chanel.send(
+                f"Użytkownik {message.author.mention} wysłał na memach *to*. Oceń jakość reakcją.",
+                embed=embed
+            )
+            await message_from_send.add_reaction('✅')
+            await message_from_send.add_reaction('⛔')
+
+    #Koliw memy mod end here
+    
     guilds = func.get_guilds(client)
 
     admin = ADMIN
@@ -1057,6 +1075,24 @@ async def on_reaction_add(reaction, user):
 
     if user.bot:
         return
+
+    #Koliw memy mod start here
+    if ( 
+        reaction.message.channel.id == cfg.CONFIG['meme-admin-chanel-id'] 
+        and 'Oceń jakość reakcją.' in reaction.message.content
+        and reaction.message.author.id == cfg.CONFIG['client_id']
+    ):
+        if reaction.emoji == "✅":
+            try:
+                user_id = int(reaction.message.content.split('@')[1].split('>')[0])
+            except:
+                print(2137)
+        elif reaction.emoji == "⛔":
+            await reaction.message.edit(content=f"Użytkownik {user.mention} usuną tego mema autorstwa <@{reaction.message.content.split('@')[1].split('>')[0]}>")
+
+
+
+    #Koliw memy mod end here
 
     guild = reaction.message.guild
     guilds = func.get_guilds(client)
