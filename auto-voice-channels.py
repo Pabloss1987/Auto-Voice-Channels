@@ -1117,7 +1117,7 @@ async def on_reaction_add(reaction, user):
             chanel = client.get_channel(cfg.CONFIG['meme-chanel-id'])
             msg = await channel.fetch_message(msg['id'])
 
-            for rec in ['NO','YES','Maybe']:
+            for rec in [762355581863329823, 762355581880500244, 762355581964255232]:
                 await msg.add_reaction(rec)
 
             #print(msg['id'])
