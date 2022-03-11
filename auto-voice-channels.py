@@ -863,6 +863,7 @@ async def on_message(message):
     if message.author.bot:
         # Don't respond to self or bots
         return
+
     #Koliw memy mod start here
     
     #if message is send in meme chanel
@@ -879,6 +880,7 @@ async def on_message(message):
             )
             await message_from_send.add_reaction('✅')
             await message_from_send.add_reaction('⛔')
+        await message.delete()
 
     #Koliw memy mod end here
     
@@ -1104,15 +1106,22 @@ async def on_reaction_add(reaction, user):
 
             if len(webhooks) == 0:
                 await channel.create_webhook(name = 'Webhookoślij z bota by koliw',reason='Bot od memów wymaga webhooka by *fałszować* użytkownika. Jest to technicznie wymagane. Bot by koliw ;-)')
-            await webhooks[0].send(
+            msg = await webhooks[0].send(
                     username=user.display_name,
                     avatar_url=user.avatar_url,
                     file=mem
+               )
 
-                )
 
-            #except:
-            #    print(2137)
+
+            chanel = client.get_channel(cfg.CONFIG['meme-chanel-id'])
+            msg = await channel.fetch_message(msg['id'])
+
+            for rec in ['1️⃣','2️⃣','3️⃣']:
+                await msg.add_reaction(rec)
+
+            #print(msg['id'])
+
         elif reaction.emoji == "⛔":
             await reaction.message.edit(content=f"Użytkownik {user.mention} usuną tego mema autorstwa <@{reaction.message.content.split('@')[1].split('>')[0]}>")
 
