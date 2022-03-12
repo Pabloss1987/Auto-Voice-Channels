@@ -880,7 +880,9 @@ async def on_message(message):
             )
             await message_from_send.add_reaction('✅')
             await message_from_send.add_reaction('⛔')
+        await (await message.reply('Twój mem oczekuje na sprawdzenie, cierpliwości, robochomiki już go analizują!')).delete(delay=10)
         await message.delete()
+
 
     #Koliw memy mod end here
     
@@ -1117,7 +1119,7 @@ async def on_reaction_add(reaction, user):
             chanel = client.get_channel(cfg.CONFIG['meme-chanel-id'])
             msg = await channel.fetch_message(msg['id'])
 
-            for rec in [762355581863329823, 762355581880500244, 762355581964255232]:
+            for rec in ['<:YES:762355581863329823>','<:Maybe:762355581880500244>','<:NO:762355581964255232>']:
                 await msg.add_reaction(rec)
 
             #print(msg['id'])
