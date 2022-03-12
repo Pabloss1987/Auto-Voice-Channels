@@ -869,6 +869,10 @@ async def on_message(message):
     #if message is send in meme chanel
     if(message.channel.id == cfg.CONFIG["meme-chanel-id"]):
         meme_admin_chanel = client.get_channel(cfg.CONFIG["meme-admin-chanel-id"])
+
+        if not message.attachments:
+            return
+
         for mem in message.attachments:
 
             embed = discord.Embed()
@@ -1123,9 +1127,10 @@ async def on_reaction_add(reaction, user):
                 await msg.add_reaction(rec)
 
             #print(msg['id'])
+            await reaction.message.delete()
 
         elif reaction.emoji == "⛔":
-            await reaction.message.edit(content=f"Użytkownik {user.mention} usuną tego mema autorstwa <@{reaction.message.content.split('@')[1].split('>')[0]}>")
+            await reaction.message.delete()
 
 
 
