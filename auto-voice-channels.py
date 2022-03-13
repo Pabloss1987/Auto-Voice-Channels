@@ -875,12 +875,18 @@ async def on_message(message):
 
         for mem in message.attachments:
 
+            r = requests.get(mem.url)
+            file = discord.File(
+                fp = io.BytesIO(r.content),
+                filename = 'tensuperniesmiesznymem.png'
+                )
             embed = discord.Embed()
-            embed.set_image(url=mem.url)
+            embed.set_image(url='attachment://tensuperniesmiesznymem.png')
 
             message_from_send = await meme_admin_chanel.send(
                 f"Użytkownik {message.author.mention} wysłał na memach *to*. Oceń jakość reakcją.",
-                embed=embed
+                embed=embed,
+                file=file
             )
             await message_from_send.add_reaction('✅')
             await message_from_send.add_reaction('⛔')
@@ -1099,19 +1105,21 @@ async def on_reaction_add(reaction, user):
             channel = client.get_channel(cfg.CONFIG['meme-chanel-id'])
             webhooks = await channel.webhooks()
 
+            user = client.get_user(user_id)
+
             url = reaction.message.embeds[0].image.url
             r = requests.get(url)
-
-            user = client.get_user(user_id)
             mem = discord.File(
                 fp = io.BytesIO(r.content),
                 filename = 'test.png'
-
                 )
 
 
             if len(webhooks) == 0:
-                await channel.create_webhook(name = 'Webhookoślij z bota by koliw',reason='Bot od memów wymaga webhooka by *fałszować* użytkownika. Jest to technicznie wymagane. Bot by koliw ;-)')
+                await channel.create_webhook(
+                    name = 'Webhookoślij z bota by koliw',
+                    reason='Bot od memów wymaga webhooka by *fałszować*'
+                    'użytkownika. Jest to technicznie wymagane. Bot by koliw ;-)')
             msg = await webhooks[0].send(
                     username=user.display_name,
                     avatar_url=user.avatar_url,
@@ -1124,6 +1132,7 @@ async def on_reaction_add(reaction, user):
             msg = await channel.fetch_message(msg['id'])
 
             for rec in ['<:YES:762355581863329823>','<:Maybe:762355581880500244>','<:NO:762355581964255232>']:
+            #for rec in []:
                 await msg.add_reaction(rec)
 
             #print(msg['id'])
