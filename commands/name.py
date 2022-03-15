@@ -5,7 +5,7 @@ help_text = [
     [
         ("Usage:", "<PREFIX><COMMAND> `NEW NAME`"),
         ("Description:",
-         "Directly change the name of the channel you're in. "
+         "Zmiana nazwy kanału na którym się znajdujesz. "
          "Supports all variables from the `template` command (use `<PREFIX>help template` to get a list).\n\n"
          "Use `<PREFIX><COMMAND> reset` to remove your name override and revert to the original template."),
         ("Examples:",
