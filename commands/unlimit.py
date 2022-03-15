@@ -4,8 +4,8 @@ help_text = [
     [
         ("Usage:", "<PREFIX><COMMAND>"),
         ("Description:",
-         "Remove the user limit in your channel. Also removes any limit that may have been "
-         "inherited from the primary channel."),
+         "Zdejmulje z kanału limit osób które mogą dołączyć. "
+         "Limit jest dziediczony z kanału głównego."),
     ]
 ]
 
