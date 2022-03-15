@@ -36,7 +36,7 @@ command = Cmd(
     help_text=help_text,
     params_required=1,
     gold_required=True,
-    admin_required=False,
+    admin_required=True,
     voice_required=True,
     creator_only=True,
 )
