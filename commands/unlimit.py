@@ -4,7 +4,7 @@ help_text = [
     [
         ("Usage:", "<PREFIX><COMMAND>"),
         ("Description:",
-         "Zdejmulje z kanału limit osób które mogą dołączyć. "
+         "Zdejmuje z kanału limit osób które mogą dołączyć. "
          "Limit jest dziediczony z kanału głównego."),
     ]
 ]
