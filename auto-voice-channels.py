@@ -878,10 +878,10 @@ async def on_message(message):
             r = requests.get(mem.url)
             file = discord.File(
                 fp = io.BytesIO(r.content),
-                filename = 'tensuperniesmiesznymem.png'
+                filename = mem.filename
                 )
             embed = discord.Embed()
-            embed.set_image(url='attachment://tensuperniesmiesznymem.png')
+            embed.set_image(url=f'attachment://{mem.filename}')
 
             message_from_send = await meme_admin_chanel.send(
                 f"Użytkownik {message.author.mention} wysłał na memach *to*. Oceń jakość reakcją.",
@@ -1111,7 +1111,7 @@ async def on_reaction_add(reaction, user):
             r = requests.get(url)
             mem = discord.File(
                 fp = io.BytesIO(r.content),
-                filename = 'test.png'
+                filename = url.split('/')[6]
                 )
 
 
