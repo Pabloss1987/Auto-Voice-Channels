@@ -7,7 +7,7 @@ help_text = [
     [
         ("Sposób Użycia:", "<PREFIX><COMMAND>"),
         ("Opis:",
-         "Zmienia Twój Kanał na publiczny i każdy może do niego dołączyć."),
+         "Zmienia Twój Kanał na publiczny, po tym każdy będzie mógł do Ciebie dołączyć."),
     ]
 ]
 
