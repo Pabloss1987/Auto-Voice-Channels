@@ -2,8 +2,8 @@ from commands.base import Cmd
 
 help_text = [
     [
-        ("Usage:", "<PREFIX><COMMAND>"),
-        ("Description:",
+        ("Sposób Użycia:", "<PREFIX><COMMAND>"),
+        ("Opis:",
          "Zdejmuje z kanału limit osób które mogą dołączyć. "
          "Limit jest dziediczony z kanału głównego."),
     ]

@@ -4,8 +4,8 @@ from commands.base import Cmd
 
 help_text = [
     [
-        ("Użycie:", "<PREFIX><COMMAND> `@USER`"),
-        ("Description:",
+        ("Sposób Użycia:", "<PREFIX><COMMAND> `@USER`"),
+        ("Opis:",
          "Przekazuje własność kanału dla wybranej osoby aby stała się Twórcą kanału "
          "Dzięki temu nowa osoba może używać komend takich jak ( `private`, `limit`, `name`...)."),
         ("Przykład:",
@@ -23,12 +23,12 @@ async def execute(ctx, params):
     user = utils.get_user_in_channel(name, vc)
 
     if not user:
-        return False, "Can't find any user in your channel with the name \"{}\".".format(name)
+        return False, "Nie mogę znaleść użytkownika o takim nicku na twoim kanale głosowym.\"{}\".".format(name)
     if user.id == ctx['creator_id']:
         if user == author:
             return False, "Jesteś już twórcą kanału."
         else:
-            return False, "{} is already the creator.".format(func.user_hash(user))
+            return False, "{} jest już twórcą.".format(func.user_hash(user))
 
     result = await func.set_creator(guild, vc.id, user)
     return result, None

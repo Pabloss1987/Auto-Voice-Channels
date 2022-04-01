@@ -5,9 +5,9 @@ from commands.base import Cmd
 
 help_text = [
     [
-        ("Usage:", "<PREFIX><COMMAND>"),
-        ("Description:",
-         "Make your private channel public again, so anyone can join."),
+        ("Sposób Użycia:", "<PREFIX><COMMAND>"),
+        ("Opis:",
+         "Zmienia Twój Kanał na publiczny i każdy może do niego dołączyć."),
     ]
 ]
 
@@ -21,13 +21,13 @@ async def execute(ctx, params):
         for s, sv in pv['secondaries'].items():
             if s == vc.id:
                 if 'priv' not in sv or not sv['priv']:
-                    return False, ("Your channel is already public. "
-                                   "Use `{}private` to make it private instead.".format(ctx['print_prefix']))
+                    return False, ("Twój kanał jest już publiczny. "
+                                   "Użyj `{}private` aby był znowu prywatny.".format(ctx['print_prefix']))
                 try:
                     await vc.set_permissions(guild.default_role, connect=True)
                 except discord.errors.Forbidden:
-                    return False, ("I don't have permission to do that."
-                                   "Please make sure I have the *Manage Roles* permission in this server and category.")
+                    return False, ("Nie mam do tego Permisji."
+                                   "Upewnij się że mam pozwolenie "permisje" do *Zarządzanie Rolami* w tej kategorii i serwerze.")
                 settings['auto_channels'][p]['secondaries'][s]['priv'] = False
                 try:
                     jcid = settings['auto_channels'][p]['secondaries'][s]['jc']
@@ -42,9 +42,9 @@ async def execute(ctx, params):
                     if jc:
                         await jc.delete()
                 except discord.errors.Forbidden:
-                    return False, "You channel is now public, but I'm not allowed to delete your **⇩ Join** channel."
-                return True, "Your channel is now public!"
-    return False, "It doesn't seem like you're in a voice channel anymore."
+                    return False, "Tój kanał jest teraz publiczny ale nie mogę skasować kanału **⇩ Dołącz** ."
+                return True, "Twój kanał jest *PUBLICZNY!*"
+    return False, "Wygląda na to że nie jesteś już na kanale głosowym."
 
 
 command = Cmd(
