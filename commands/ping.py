@@ -6,9 +6,9 @@ from commands.base import Cmd
 
 help_text = [
     [
-        ("Usage:", "<PREFIX><COMMAND>"),
-        ("Description:",
-         "Test if the bot is alive, and see the delay between your commands and my response.\n"
+        ("Sposób Użycia:", "<PREFIX><COMMAND>"),
+        ("Opis:",
+         "Sprawdza czy bot działa i jakie jest opóźnienie między komendą a odpowiedzą serwera.\n"
          "`0.1s` to `1s` response time is normal.\n"
          "Higher than `1s` indicates I'm struggling to keep up, "
          "but you should try again to see if the delay was only temporary.\n"
