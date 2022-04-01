@@ -4,11 +4,11 @@ from commands.base import Cmd
 
 help_text = [
     [
-        ("Usage:", "<PREFIX><COMMAND> `@USER`"),
+        ("Użycie:", "<PREFIX><COMMAND> `@USER`"),
         ("Description:",
-         "Transfer ownership of your channel to someone else in the channel, allowing them to use commands that "
-         "require them to be the creator (e.g. `private`, `limit`, `name`...)."),
-        ("Examples:",
+         "Przekazuje własność kanału dla wybranej osoby aby stała się Twórcą kanału "
+         "Dzięki temu nowa osoba może używać komend takich jak ( `private`, `limit`, `name`...)."),
+        ("Przykład:",
          "```<PREFIX><COMMAND> @pixaal```"),
     ]
 ]
@@ -26,7 +26,7 @@ async def execute(ctx, params):
         return False, "Can't find any user in your channel with the name \"{}\".".format(name)
     if user.id == ctx['creator_id']:
         if user == author:
-            return False, "You're already the creator."
+            return False, "Jesteś już twórcą kanału."
         else:
             return False, "{} is already the creator.".format(func.user_hash(user))
 
