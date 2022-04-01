@@ -27,7 +27,7 @@ async def execute(ctx, params):
                     await vc.set_permissions(guild.default_role, connect=True)
                 except discord.errors.Forbidden:
                     return False, ("Nie mam do tego Permisji."
-                                   "Upewnij się że mam pozwolenie "permisje" do *Zarządzanie Rolami* w tej kategorii i serwerze.")
+                                   "Upewnij się że mam pozwolenie *permisje* do *Zarządzanie Rolami* w tej kategorii i serwerze.")
                 settings['auto_channels'][p]['secondaries'][s]['priv'] = False
                 try:
                     jcid = settings['auto_channels'][p]['secondaries'][s]['jc']
