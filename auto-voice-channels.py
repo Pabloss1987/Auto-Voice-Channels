@@ -863,38 +863,6 @@ async def on_message(message):
     if message.author.bot:
         # Don't respond to self or bots
         return
-
-    #Koliw memy mod start here
-    
-    #if message is send in meme chanel
-    if(message.channel.id == cfg.CONFIG["meme-chanel-id"]):
-        meme_admin_chanel = client.get_channel(cfg.CONFIG["meme-admin-chanel-id"])
-
-        if not message.attachments:
-            return
-
-        for mem in message.attachments:
-
-            r = requests.get(mem.url)
-            file = discord.File(
-                fp = io.BytesIO(r.content),
-                filename = mem.filename
-                )
-            embed = discord.Embed()
-            embed.set_image(url=f'attachment://{mem.filename}')
-
-            message_from_send = await meme_admin_chanel.send(
-                f"Użytkownik {message.author.mention} wysłał na memach *to*. Oceń jakość reakcją.",
-                embed=embed,
-                file=file
-            )
-            await message_from_send.add_reaction('✅')
-            await message_from_send.add_reaction('⛔')
-        await (await message.reply('Twój mem oczekuje na sprawdzenie, cierpliwości, robochomiki już go analizują!')).delete(delay=10)
-        await message.delete()
-
-
-    #Koliw memy mod end here
     
     guilds = func.get_guilds(client)
 
